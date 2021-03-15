@@ -7,7 +7,6 @@
 #include <QDebug>
 #include <QtMath>
 #include <QPair>
-#include <QLinkedList>
 #include <QMessageBox>
 
 // STL
@@ -32,14 +31,21 @@ public /*methods*/:
     bool setHungarianRingPuzzleGameOnBoard();
     //! ...
     void changeSelectedHungaringRing();
+
     //! ...
     bool isPuzzleGamePlaced() const;
     //! ...
     bool isGameOver() const;
     //! ...
     bool isArounHungarianGame() const;
+
     //! ...
     void rotatePuzzleGame();
+
+    //! ...
+    const uint32_t &numberOfRotations() const;
+
+    bool clearHungarianGameStat();
 
     QRectF size() const;
 

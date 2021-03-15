@@ -44,6 +44,5 @@ signals:
 private:
     Ui::GameScreen *ui;
     std::unique_ptr<GameBoard> m_gameScene;
-    uint32_t                   m_rotationCounter;
 };
 #endif // GAMESCREEN_H

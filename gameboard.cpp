@@ -124,7 +124,22 @@ bool GameBoard::isGameOver() const
 
 void GameBoard::rotatePuzzleGame()
 {
-    m_hrPuzzle->rotate(16);
+    m_hrPuzzle->rotate(64);
+}
+
+const uint32_t &GameBoard::numberOfRotations() const
+{
+    return m_hrPuzzle->numberOfRotations();
+}
+
+bool GameBoard::clearHungarianGameStat()
+{
+    if (m_hrPuzzle == nullptr) {
+        return false;
+    }
+
+    m_hrPuzzle->clearGameStat();
+    return true;
 }
 
 QRectF GameBoard::size() const

@@ -34,7 +34,7 @@ GameScreen::~GameScreen()
 void GameScreen::mousePressEvent(QMouseEvent *event)
 {
     if (m_gameScene->isArounHungarianGame()) {
-        ui->gameStat->setText(QString::number(++m_rotationCounter));
+        ui->gameStat->setText(QString::number(m_gameScene->numberOfRotations()));
     }
 
     if (m_gameScene->isGameOver()) {
@@ -67,8 +67,8 @@ bool GameScreen::startGame()
         return false;
     }
 
-    m_rotationCounter = 0;
-    ui->gameStat->setText(QString::number(m_rotationCounter));
+    m_gameScene->clearHungarianGameStat();
+    ui->gameStat->setText(QString::number(m_gameScene->numberOfRotations()));
 
     setGameScreenInteractive(true);
     m_gameScene->rotatePuzzleGame();
@@ -83,7 +83,7 @@ void GameScreen::about()
 
     // Чтобы перенести текст на новую строчку, необходимо написать в конце
     // строки <br>
-    mb.setText("Автор: Плисенко Борис Максимович <br>"
+    mb.setText("Автор: Борис Плисенко Максимович <br>"
                "Группа: КИ19-08Б <br>"
                "Игра: Кольца Рубика");
     mb.exec();
@@ -98,7 +98,7 @@ void GameScreen::displayGameOverWindow()
     saveQuery.setWindowTitle("Кольца Рубика");
     saveQuery.setText(
                 QString("Поздравляем! Вы решили головомку \"Кольца Рубика\". <br>"
-                        "Количество ходов: %1. Хотите попробовать ещё раз?").arg(m_rotationCounter));
+                        "Количество ходов: %1. Хотите попробовать ещё раз?").arg(m_gameScene->numberOfRotations()));
 
     // Добавляем к нашему окну две кнопки: "Принять" и "Отменить"
     saveQuery.setStandardButtons(QMessageBox::Apply | QMessageBox::Discard);

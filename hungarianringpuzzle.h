@@ -39,6 +39,8 @@ public /*members*/:
 
 public /*operations*/:
 
+    void clearGameStat();
+
     //! ...
     HungarianRing getRingBySide(Ring);
     //! ...
@@ -51,6 +53,8 @@ public /*operations*/:
 
     //! ...
     QVector<HungarianBall*> balls() const;
+
+    const uint32_t &numberOfRotations() const;
 
     //! ...
     bool isGameOver() const;
@@ -74,7 +78,8 @@ private /*operations*/:
 
 protected /*members*/:
 
-    Ring m_selectedRing = Ring::None;
+    Ring     m_selectedRing = Ring::None;
+    uint32_t m_numberOfRotations;
 
     //! Умный указатель на левое игровому кольцо
     std::unique_ptr<HungarianEllipse> m_leftRing;

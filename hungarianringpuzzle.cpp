@@ -5,10 +5,17 @@ HungarianRingPuzzle::HungarianRingPuzzle(uint8_t numberOfBalls)
     createHungarianRings();
     createHungarianBallsSpawner(numberOfBalls);
     createBallsAroundRings(numberOfBalls);
+
+    clearGameStat();
 }
 
 HungarianRingPuzzle::~HungarianRingPuzzle()
 {
+}
+
+void HungarianRingPuzzle::clearGameStat()
+{
+    m_numberOfRotations = 0;
 }
 
 HungarianRing HungarianRingPuzzle::getRingBySide(HungarianRingPuzzle::Ring ring)
@@ -67,12 +74,20 @@ bool HungarianRingPuzzle::rotateSelectedHungarianRing(bool toRight)
         break;
     }
 
+    // Увеличиваем счетчик поворотов
+    m_numberOfRotations++;
+
     return true;
 }
 
 QVector<HungarianBall *> HungarianRingPuzzle::balls() const
 {
     return (m_leftBallList + m_rightBallList);
+}
+
+const uint32_t &HungarianRingPuzzle::numberOfRotations() const
+{
+    return m_numberOfRotations;
 }
 
 void HungarianRingPuzzle::rotate(uint8_t count)
